@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2enh2ktteyrk"]
+
+[ext_resource type="Script" uid="uid://cxjrn8b0yp8w2" path="res://BattleScene/Objects/home.gd" id="1_qcmtt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wksh1"]
+size = Vector2(32, 512)
+
+[node name="Home" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_qcmtt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wksh1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

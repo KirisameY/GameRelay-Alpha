@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cws34wjr3a3to"]
+
+[ext_resource type="Texture2D" uid="uid://cecopl3mdwvuw" path="res://Assets/sprites/悲报.png" id="1_q8uxq"]
+
+[sub_resource type="GDScript" id="GDScript_q8uxq"]
+script/source = "extends Button
+
+func _pressed():
+	get_tree().change_scene_to_file(\"res://Main.tscn\")
+"
+
+[node name="StageLose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="喜报" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q8uxq")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = 62.5
+offset_right = 28.0
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "豪德！"
+script = SubResource("GDScript_q8uxq")

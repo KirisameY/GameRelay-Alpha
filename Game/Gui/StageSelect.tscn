@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl47jbmii1ug"]
+
+[sub_resource type="GDScript" id="GDScript_fq0r8"]
+script/source = "extends Button
+
+func _pressed():
+	var stage0 = preload(\"res://Stages/Stage0.tscn\").instantiate() as Stage
+	get_tree().root.add_child(stage0)
+	stage0.stage_lose.connect(func():
+		stage0.get_tree().change_scene_to_file(\"res://Gui/StageLose.tscn\")
+		stage0.queue_free()
+	)
+	stage0.stage_win.connect(func(_maxlife, _life):
+		stage0.get_tree().change_scene_to_file(\"res://Gui/StageWin.tscn\")
+		stage0.queue_free()
+	)
+	get_parent().free()
+"
+
+[node name="StageSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stage 0"
+script = SubResource("GDScript_fq0r8")

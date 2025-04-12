@@ -8,7 +8,9 @@ size = Vector2(64, 64)
 
 [node name="Slime" type="AnimatableBody2D"]
 collision_layer = 4
+sync_to_physics = false
 script = ExtResource("1_mpqhq")
+MaxHealth = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mpqhq")

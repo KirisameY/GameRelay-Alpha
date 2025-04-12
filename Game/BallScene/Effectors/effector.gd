@@ -54,7 +54,8 @@ func _draw():
 
 
 func set_size(size: Vector2):
-	($CollisionShape2D.shape as RectangleShape2D).size = size
+	if $CollisionShape2D.shape != null:
+		($CollisionShape2D.shape as RectangleShape2D).size = size
 	queue_redraw()
 
 
@@ -63,7 +64,7 @@ func set_size(size: Vector2):
 var AffectingBalls: Array[Ball]
 
 #virtual method for apply an effect on ball, override this
-func _effect_ball(ball: Ball): pass
+func _effect_ball(_ball: Ball): pass
 
 func _on_body_entered(body):
 	var ball := body as Ball

@@ -1,33 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://crfjdqo3rvv1b"]
+[gd_scene load_steps=9 format=3 uid="uid://crfjdqo3rvv1b"]
 
 [ext_resource type="Script" uid="uid://b3u3iyu0m3x0a" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://cn03035nkr2ik" path="res://BallScene/Objects/Ball.tscn" id="2_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://cef2xrqwjw68r" path="res://BallScene/Objects/BallCreaser.tscn" id="3_r0du0"]
 [ext_resource type="PackedScene" uid="uid://js3a7nbeexc1" path="res://BallScene/Effectors/ToBullet.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dvagw44jx7l5u" path="res://BattleScene/Enemies/Slime.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://b2enh2ktteyrk" path="res://BattleScene/Objects/Home.tscn" id="6_3dxm6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
 size = Vector2(400, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3dxm6"]
+font_size = 72
 
 [node name="Main" type="Node"]
 script = ExtResource("1_glv2v")
 
 [node name="Ball" parent="." instance=ExtResource("2_uu6xs")]
-position = Vector2(442, 170)
+position = Vector2(450, 68)
 
 [node name="Ball2" parent="." instance=ExtResource("2_uu6xs")]
-position = Vector2(420, 192)
+position = Vector2(428, 90)
 
 [node name="Ball3" parent="." instance=ExtResource("2_uu6xs")]
-position = Vector2(480, 168)
+position = Vector2(488, 66)
 
 [node name="Ball4" parent="." instance=ExtResource("2_uu6xs")]
-position = Vector2(449, 191)
+position = Vector2(457, 89)
 
 [node name="Ball5" parent="." instance=ExtResource("2_uu6xs")]
-position = Vector2(494, 208)
+position = Vector2(502, 106)
 
 [node name="Ball6" parent="." instance=ExtResource("2_uu6xs")]
-position = Vector2(453, 217)
+position = Vector2(461, 115)
 
 [node name="Ball7" parent="." instance=ExtResource("2_uu6xs")]
 position = Vector2(438, 43)
@@ -55,9 +60,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BallCreaser" parent="." instance=ExtResource("3_r0du0")]
-position = Vector2(462, 261)
+position = Vector2(560, 155)
 Mode = 2
 Value = 4
 
 [node name="ToBullet" parent="." instance=ExtResource("4_cm0pq")]
-position = Vector2(438, 318)
+position = Vector2(432, 226)
+
+[node name="Slime" parent="." instance=ExtResource("5_fos0i")]
+position = Vector2(411, 320)
+
+[node name="Home" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(42, 242)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 416.0
+offset_right = 1132.0
+offset_bottom = 617.0
+text = "这些东西我测试用的，没有什么作用
+你需要的话直接删了吧"
+label_settings = SubResource("LabelSettings_3dxm6")

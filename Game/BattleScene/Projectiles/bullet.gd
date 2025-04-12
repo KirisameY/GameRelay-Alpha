@@ -22,7 +22,7 @@ func _draw():
 
 func _on_body_entered(body: Node):
 	if body.has_method("take_damage"):
-		body.take_damage(linear_velocity * DamageRate)
+		body.take_damage(linear_velocity.length() * DamageRate)
 	var particles : GPUParticles2D = $GPUParticles2D
 	particles.finished.connect(particles.queue_free)
 	particles.emitting = false

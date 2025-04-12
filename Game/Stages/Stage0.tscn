@@ -1,0 +1,283 @@
+[gd_scene load_steps=19 format=3 uid="uid://cxhcn0gteoa0d"]
+
+[ext_resource type="PackedScene" uid="uid://cn03035nkr2ik" path="res://BallScene/Objects/Ball.tscn" id="1_13207"]
+[ext_resource type="Script" uid="uid://dkf6g6fxd0nrn" path="res://Stages/stage.gd" id="1_ddqet"]
+[ext_resource type="Script" uid="uid://c2vimmj0f6ulu" path="res://BallScene/display_polygon.gd" id="1_nxs8l"]
+[ext_resource type="PackedScene" uid="uid://dumnblsm7tgfc" path="res://BallScene/Controllers/DoubleGate.tscn" id="3_wbglr"]
+[ext_resource type="PackedScene" uid="uid://cef2xrqwjw68r" path="res://BallScene/Objects/BallCreaser.tscn" id="4_0uo0w"]
+[ext_resource type="PackedScene" uid="uid://js3a7nbeexc1" path="res://BallScene/Effectors/ToBullet.tscn" id="4_a2har"]
+[ext_resource type="PackedScene" uid="uid://b2enh2ktteyrk" path="res://BattleScene/Objects/Home.tscn" id="7_f54mj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13207"]
+size = Vector2(544, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbglr"]
+size = Vector2(48, 432)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r5on"]
+size = Vector2(48, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f54mj"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2har"]
+size = Vector2(480, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddqet"]
+size = Vector2(80, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbglr"]
+
+[sub_resource type="GDScript" id="GDScript_ddqet"]
+resource_name = "enemy_spawner"
+script/source = "extends Marker2D
+
+func spawn_enemy():
+	var slime = preload(\"res://BattleScene/Enemies/Slime.tscn\").instantiate()
+	$\"..\".add_child(slime)
+	$\"..\".add_enemy(slime)
+	slime.position = position
+"
+
+[sub_resource type="Animation" id="Animation_ddqet"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:WavesEnd")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_f54mj"]
+resource_name = "new_animation"
+length = 9.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 5, 7, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spawn_enemy"
+}, {
+"args": [],
+"method": &"spawn_enemy"
+}, {
+"args": [],
+"method": &"spawn_enemy"
+}, {
+"args": [],
+"method": &"spawn_enemy"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:WavesEnd")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(10.1965, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lheyr"]
+_data = {
+&"RESET": SubResource("Animation_ddqet"),
+&"new_animation": SubResource("Animation_f54mj")
+}
+
+[node name="Stage0" type="Node2D" node_paths=PackedStringArray("Homes")]
+script = ExtResource("1_ddqet")
+Homes = [NodePath("Home")]
+
+[node name="Ball" parent="." instance=ExtResource("1_13207")]
+position = Vector2(976, 580)
+
+[node name="Ball2" parent="." instance=ExtResource("1_13207")]
+position = Vector2(995, 576)
+
+[node name="Ball3" parent="." instance=ExtResource("1_13207")]
+position = Vector2(1004, 580)
+
+[node name="Ball4" parent="." instance=ExtResource("1_13207")]
+position = Vector2(96, 572)
+
+[node name="Ball5" parent="." instance=ExtResource("1_13207")]
+position = Vector2(115, 568)
+
+[node name="Ball6" parent="." instance=ExtResource("1_13207")]
+position = Vector2(124, 572)
+
+[node name="DoubleGate" parent="." instance=ExtResource("3_wbglr")]
+position = Vector2(544, 656)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="DisplayPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(-1, -6)
+polygon = PackedVector2Array(-15, 326, -15, 742, 1097, 742, 1097, 326, 1065, 326, 505, 326, 529, 358, 545, 342, 1065, 342, 1065, 710, 561, 710, 545, 694, 529, 710, 17, 710, 17, 326)
+script = ExtResource("1_nxs8l")
+PolygonColor = Color(0.8, 0.8, 0.8, 1)
+metadata/_custom_type_script = "uid://c2vimmj0f6ulu"
+
+[node name="DisplayPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(-40, 66)
+polygon = PackedVector2Array(536, 590, 504, 574, 104, 510, 104, 318, 568, 318, 568, 310, 568, 254, 88, 254, 88, 590, 104, 606, 520, 606)
+script = ExtResource("1_nxs8l")
+PolygonColor = Color(0.8, 0.8, 0.8, 1)
+metadata/_custom_type_script = "uid://c2vimmj0f6ulu"
+
+[node name="DisplayPolygon2D3" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(712, 64)
+polygon = PackedVector2Array(320, 304, -136, 304, -152, 320, 304, 320, 304, 512, -88, 576, -120, 592, -104, 608, 288, 608, 320, 576)
+script = ExtResource("1_nxs8l")
+PolygonColor = Color(0.8, 0.8, 0.8, 1)
+metadata/_custom_type_script = "uid://c2vimmj0f6ulu"
+
+[node name="DisplayPolygon2D4" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(712, 48)
+polygon = PackedVector2Array(-168, 384, -184, 400, -168, 432, -152, 400)
+script = ExtResource("1_nxs8l")
+PolygonColor = Color(0.8, 0.8, 0.8, 1)
+metadata/_custom_type_script = "uid://c2vimmj0f6ulu"
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="LeftBoost" type="Area2D" parent="Areas"]
+position = Vector2(272, 680)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/LeftBoost"]
+shape = SubResource("RectangleShape2D_13207")
+
+[node name="LeftRise" type="Area2D" parent="Areas"]
+position = Vector2(40, 664)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(0, -2)
+gravity_direction = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/LeftRise"]
+shape = SubResource("RectangleShape2D_wbglr")
+
+[node name="RightBoost" type="Area2D" parent="Areas"]
+position = Vector2(816, 680)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(1, 0)
+gravity_direction = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/RightBoost"]
+shape = SubResource("RectangleShape2D_13207")
+
+[node name="RightRise" type="Area2D" parent="Areas"]
+position = Vector2(1040, 520)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(0, -2)
+gravity_direction = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/RightRise"]
+shape = SubResource("RectangleShape2D_1r5on")
+
+[node name="Shot" type="Area2D" parent="Areas"]
+position = Vector2(48, 320)
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(16, 4)
+gravity_direction = Vector2(16, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Shot"]
+position = Vector2(-16, -16)
+shape = SubResource("RectangleShape2D_f54mj")
+
+[node name="BackBoost" type="Area2D" parent="Areas"]
+position = Vector2(992, 352)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/BackBoost"]
+position = Vector2(80, 0)
+shape = SubResource("RectangleShape2D_a2har")
+
+[node name="SpeedDown" type="Area2D" parent="Areas"]
+position = Vector2(248, 352)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+gravity_space_override = 1
+gravity_point_center = Vector2(1, 0)
+gravity_direction = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/SpeedDown"]
+shape = SubResource("RectangleShape2D_ddqet")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 472.0
+offset_top = 664.0
+offset_right = 616.0
+offset_bottom = 687.0
+text = "Press Space"
+label_settings = SubResource("LabelSettings_wbglr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallCreaser" parent="." instance=ExtResource("4_0uo0w")]
+position = Vector2(544, 408)
+Mode = 2
+Value = 3
+
+[node name="ToBullet" parent="." instance=ExtResource("4_a2har")]
+position = Vector2(32, 304)
+SizeX = 32.0
+SizeY = 32.0
+
+[node name="Home" parent="." instance=ExtResource("7_f54mj")]
+position = Vector2(80, 64)
+
+[node name="EnemySpawner" type="Marker2D" parent="."]
+position = Vector2(960, 288)
+script = SubResource("GDScript_ddqet")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lheyr")
+}
+autoplay = "new_animation"
