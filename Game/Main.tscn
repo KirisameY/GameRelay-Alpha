@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://crfjdqo3rvv1b"]
+
+[ext_resource type="Script" uid="uid://b3u3iyu0m3x0a" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://cn03035nkr2ik" path="res://BallScene/Objects/Ball.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://cef2xrqwjw68r" path="res://BallScene/Objects/BallCreaser.tscn" id="3_r0du0"]
+[ext_resource type="PackedScene" uid="uid://js3a7nbeexc1" path="res://BallScene/Effectors/ToBullet.tscn" id="4_cm0pq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
+size = Vector2(400, 20)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_glv2v")
+
+[node name="Ball" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(442, 170)
+
+[node name="Ball2" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(420, 192)
+
+[node name="Ball3" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(480, 168)
+
+[node name="Ball4" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(449, 191)
+
+[node name="Ball5" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(494, 208)
+
+[node name="Ball6" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(453, 217)
+
+[node name="Ball7" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(438, 43)
+
+[node name="Ball8" parent="." instance=ExtResource("2_uu6xs")]
+position = Vector2(471, 50)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(541, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_uu6xs")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -10.0
+offset_right = 200.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BallCreaser" parent="." instance=ExtResource("3_r0du0")]
+position = Vector2(462, 261)
+Mode = 2
+Value = 4
+
+[node name="ToBullet" parent="." instance=ExtResource("4_cm0pq")]
+position = Vector2(438, 318)

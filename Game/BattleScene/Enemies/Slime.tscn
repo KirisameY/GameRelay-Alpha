@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvagw44jx7l5u"]
+
+[ext_resource type="Texture2D" uid="uid://lk027bmdchro" path="res://icon.svg" id="1_7ssle"]
+[ext_resource type="Script" uid="uid://dg1rj5fncpiuy" path="res://BattleScene/Enemies/slime.gd" id="1_mpqhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpqhq"]
+size = Vector2(64, 64)
+
+[node name="Slime" type="AnimatableBody2D"]
+collision_layer = 4
+script = ExtResource("1_mpqhq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mpqhq")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7ssle")

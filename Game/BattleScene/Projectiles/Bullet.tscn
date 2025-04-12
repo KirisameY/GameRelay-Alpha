@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bn8sareoehvtr"]
+
+[ext_resource type="Script" uid="uid://bco2qv338jkn1" path="res://BattleScene/Projectiles/bullet.gd" id="1_xpvtb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpvtb"]
+radius = 8.0
+
+[sub_resource type="Gradient" id="Gradient_xpvtb"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.785714, 1)
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kkwqi"]
+gradient = SubResource("Gradient_xpvtb")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Curve" id="Curve_xpvtb"]
+_data = [Vector2(0.0220588, 1), 0.0, 0.0, 0, 0, Vector2(0.977941, 0), -3.39576, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kkwqi"]
+curve = SubResource("Curve_xpvtb")
+
+[sub_resource type="Curve" id="Curve_5dmvp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.44495, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jumet"]
+curve = SubResource("Curve_5dmvp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xpvtb"]
+particle_flag_disable_z = true
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 16.0
+radial_velocity_curve = SubResource("CurveTexture_kkwqi")
+gravity = Vector3(0, 0, 0)
+damping_min = 16.092
+damping_max = 55.747
+scale_curve = SubResource("CurveTexture_jumet")
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_xpvtb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xpvtb")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = SubResource("GradientTexture2D_kkwqi")
+process_material = SubResource("ParticleProcessMaterial_xpvtb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

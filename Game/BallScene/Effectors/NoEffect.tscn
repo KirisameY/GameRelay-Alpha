@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://l60ttrfc58bn"]
+
+[ext_resource type="Script" uid="uid://cwkl7i6njevqb" path="res://BallScene/Effectors/effector.gd" id="1_wqhnw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cf3pj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cf3pj"]
+size = Vector2(64, 64)
+
+[node name="Effector" type="Area2D"]
+script = ExtResource("1_wqhnw")
+Icon = SubResource("PlaceholderTexture2D_cf3pj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_cf3pj")

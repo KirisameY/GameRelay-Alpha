@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="InputTextHere"
+run/main_scene="uid://crfjdqo3rvv1b"
+config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=720
+
+[dotnet]
+
+project/assembly_name="GameRelayAlpha"
+project/solution_directory=".."
+
+[layer_names]
+
+2d_physics/layer_1="scene"
+2d_physics/layer_2="ball"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="bullet"
+
+[rendering]
+
+renderer/rendering_method="mobile"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://js3a7nbeexc1"]
+
+[sub_resource type="GDScript" id="GDScript_6u6gx"]
+resource_name = "to_bullet"
+script/source = "@tool
+extends Effector
+
+func _effect_ball(ball: Ball):
+	var bullet = preload(\"res://BattleScene/Projectiles/Bullet.tscn\").instantiate()
+	bullet.global_position = ball.global_position
+	bullet.linear_velocity = ball.linear_velocity
+	ball.get_parent().call_deferred(\"add_child\", bullet)
+	ball.queue_free()
+"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6u6gx"]
+
+[node name="ToBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_6u6gx")
+Icon = SubResource("PlaceholderTexture2D_6u6gx")
+BgColor = Color(1, 0.568627, 1, 1)
