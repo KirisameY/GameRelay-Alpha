@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cxjrn8b0yp8w2" path="res://BattleScene/Objects/home.gd" id="1_qcmtt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wksh1"]
-size = Vector2(32, 512)
+size = Vector2(32, 640)
 
 [node name="Home" type="Area2D"]
 collision_layer = 0

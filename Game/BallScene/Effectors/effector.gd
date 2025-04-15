@@ -72,7 +72,7 @@ func _on_body_entered(body):
 	
 	AffectingBalls.append(ball)
 	ball.tree_exiting.connect(func():AffectingBalls.erase(ball),\
-	                          ConnectFlags.CONNECT_ONE_SHOT)
+							  ConnectFlags.CONNECT_ONE_SHOT)
 	_effect_ball(ball)
 
 

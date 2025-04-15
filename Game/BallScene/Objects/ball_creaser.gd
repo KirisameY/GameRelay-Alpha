@@ -84,7 +84,7 @@ func _on_body_entered(body: Node2D):
 			else: remove_ball(ball)
 
 func _on_body_exited(body: Node2D):
-	if to_local(body.global_position).dot(Vector2.DOWN) > 0:
+	#if to_local(body.global_position).dot(Vector2.DOWN) > 0:
 		InRangeObjects.erase(body)
 
 

@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn03035nkr2ik"]
+[gd_scene load_steps=4 format=3 uid="uid://cn03035nkr2ik"]
 
 [ext_resource type="Script" uid="uid://d1he4hqgcrli5" path="res://BallScene/Objects/ball.gd" id="1_ylmr0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ylmr0"]
+bounce = 0.3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylmr0"]
 radius = 8.0
@@ -8,9 +11,12 @@ radius = 8.0
 [node name="Ball" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 3
+mass = 200.0
+physics_material_override = SubResource("PhysicsMaterial_ylmr0")
+can_sleep = false
 script = ExtResource("1_ylmr0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_ylmr0")
 one_way_collision_margin = 1.1
