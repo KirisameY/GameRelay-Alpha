@@ -182,7 +182,7 @@ script = SubResource("GDScript_ddqet")
 position = Vector2(350, 650)
 script = ExtResource("3_wbglr")
 
-[node name="Left" type="StaticBody2D" parent="Controller" node_paths=PackedStringArray("source")]
+[node name="Left" type="AnimatableBody2D" parent="Controller" node_paths=PackedStringArray("source")]
 position = Vector2(-90, 0)
 script = ExtResource("6_ddqet")
 source = NodePath("Shape")
@@ -191,7 +191,7 @@ source = NodePath("Shape")
 position = Vector2(45, 0)
 shape = SubResource("RectangleShape2D_0uo0w")
 
-[node name="Right" type="StaticBody2D" parent="Controller" node_paths=PackedStringArray("source")]
+[node name="Right" type="AnimatableBody2D" parent="Controller" node_paths=PackedStringArray("source")]
 position = Vector2(90, 0)
 script = ExtResource("6_ddqet")
 source = NodePath("Shape")
