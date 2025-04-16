@@ -13,5 +13,5 @@ func _draw():
 	draw_circle(Vector2.ZERO, Size, Color.WHITE, true, -1.0, true)
 
 func set_size(size: float):
-	($CollisionShape2D.shape as CircleShape2D).radius = size
+	($Shape.shape as CircleShape2D).radius = size
 	queue_redraw()
